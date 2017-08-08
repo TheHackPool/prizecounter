@@ -86,10 +86,10 @@ def generateWinningSequence(seed):
 
 	#Convert the whole thing to a sequence of strs (this is not really a bug but rather a representation issue)
 	for element in output:
-		stroutput.append(str(element))
+		stroutput.append(str(element).zfill(2))
 
 
-	print("[INFO] The winning combination is: " + str(output))
+	print("[INFO] The winning combination is: " + ''.join(stroutput))
 	return stroutput
 
 #This is run in parallel since the sets never interesect
@@ -169,7 +169,7 @@ if __name__ == '__main__':
     with open('results-'+currentDrawId+'.csv', 'r+') as f:
         content = f.read()
         f.seek(0, 0)
-        f.write(str(str(seed) + ",\"" + str(combination) + "\"," + str(jackpot)).rstrip('\r\n') + '\n' + content)
+        f.write(str(str(seed) + ",\"" + ''.join(combination) + "\"," + str(jackpot)).rstrip('\r\n') + '\n' + content)
 
     print("[INFO] Script has completed work! Now exiting...")
     sys.exit(0)
